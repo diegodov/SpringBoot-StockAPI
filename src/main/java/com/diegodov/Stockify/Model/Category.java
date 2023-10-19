@@ -11,13 +11,16 @@ import jakarta.persistence.Table;
 @Table (name = "category")
 public class Category {
     
+    //Attributes
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
 
     @Column (name = "name")
     private String name;
 
+    //Getters and setters
     public Long getId() {
         return id;
     }
@@ -31,6 +34,11 @@ public class Category {
     }
 
     public void setName(String name) {
+        this.name = name;
+    } 
+
+    //Constructor
+    public Category(String name) {
         this.name = name;
     }
 }
