@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+
+</head>
+
+<body>
+    <header th:replace="~{plantilla/template :: header}"> 
+
+    </header>
+
+    <div class="container">
+        <div class="card bg-light">
+            <div class="card-header bg-dark text-white" th:text="${title}"></div>
+            <div class="card-body">
+                <form th:action="@{/views/categories/save}" th:object="${category}" method="post">
+                    <div class="form-group row">
+                        <label class="col-md-2" for="name">Name: </label>
+                        <input type="text" th:field="*{name}" class="form-control form-control-sm colmd-6"
+                            id="name" placeholder="New category...">
+                    </div>
+                    <br />
+                    <div class="card-footer">
+                        <input type="submit" class="btn btn-primary btn-sm" value="Save" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{plantilla/template :: footer}">
+
+    </footer>
+</body>
+
+</html>

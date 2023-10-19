@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+
+</head>
+
+<body>
+    <header th:replace="~{plantilla/template :: header}"> 
+
+    </header>
+
+    <div class="container text-center">
+        <h1>Categories</h1>
+
+        <a class="btn btn-primary btn-sm" th:href="@{/views/categories/addcategory}" th:text="'Add'" title="'Add category'"></a>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Functions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="ct : ${categoryList} ">
+                    <td th:text="${ct.id}"></td>
+                    <td th:text="${ct.name}"></td>
+                    <td><a class="btn btn-warning btn-sm" th:href="@{/views/categorias/editcategoria/}+${ct.id}" th:text="'Editar'"
+                            title="'Editar Registro'"></a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/views/categorias/deletecategoria/}+${ct.id}" th:text="'Borrar'"
+                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    
+    
+    <footer th:replace="~{plantilla/template :: footer}">
+
+    </footer>
+</body>
+
+</html>
