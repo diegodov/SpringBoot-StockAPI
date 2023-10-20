@@ -10,21 +10,24 @@
 
     </header>
 
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div class="card bg-dark" style="max-width: 300px;">
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card bg-dark text-white" style="max-width: 300px;">
             <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
             <div class="card-body">
-                <form th:action="@{/views/categories/save}" th:object="${category}" method="post">
+                <form th:action="@{'/views/categories/edit/' + ${id}}" th:object="${category}" method="POST">
+                    <!-- Cambiar el método a POST -->
+                    <!-- Agregar campo oculto para indicar que es una solicitud PUT -->
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group row mt-3 mb-3">
                         <label class="col-md-4 text-white" for="name">Name: </label>
                         <div class="col-md-8">
-                            <input type="text" th:field="*{name}" class="form-control form-control-sm bg-white text-dark" id="name" placeholder="New category" style="font-size: 14px;">
+                            <input type="text" th:field="*{name}" class="form-control form-control-sm bg-black text-white" id="name" placeholder="New category" style="font-size: 14px;">
                         </div>
                     </div>
                     <div class="form-group row mt-3 mb-3">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Save" style="font-size: 14px;" />
+                            <input type="submit" class="btn btn-secondary btn-sm" value="Save" style="font-size: 14px;" />
                         </div>
                     </div>
                 </form>
