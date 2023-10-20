@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diegodov.Stockify.Model.Category;
@@ -34,15 +33,15 @@ public class CategoryController {
         List<Category> categoryList = categoryService.showAll();
         model.addAttribute("title", "Category list");
         model.addAttribute("categoryList", categoryList);
-        return "category";
+        return "CategoryViews/Category";
     }
 
-    @GetMapping("/addcategory")
+    @GetMapping("/add")
     public String add(Model model) {
         Category category = new Category();
         model.addAttribute("title", "Categories");
         model.addAttribute("category", category);
-        return "categoryform";
+        return "CategoryViews/CategoryForm";
     }
 
     @PostMapping("/save")
@@ -57,7 +56,7 @@ public class CategoryController {
         model.addAttribute("title", "Modify category");
         model.addAttribute("id", id);
         model.addAttribute("category", category);
-        return "editcategory";
+        return "CategoryViews/UpdateCategory";
     }
 
     @GetMapping("/delete/{id}")
