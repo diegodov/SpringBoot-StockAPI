@@ -1,6 +1,7 @@
 package com.diegodov.Stockify.Model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ public class Provider {
     private String telephone;
 
     @Column (name = "date_initialize")
-    private Date dateInitialize;
+    private LocalDate dateInitialize;
 
     @Column (name = "date_retired")
     private Date dateRetired;
@@ -56,11 +57,11 @@ public class Provider {
         this.telephone = telephone;
     }
 
-    public Date getDateInitialize() {
+    public LocalDate getDateInitialize() {
         return dateInitialize;
     }
 
-    public void setDateInitialize(Date dateInitialize) {
+    public void setDateInitialize(LocalDate dateInitialize) {
         this.dateInitialize = dateInitialize;
     }
 
@@ -73,11 +74,13 @@ public class Provider {
     }
 
     //Constructor
-    public Provider(String name, String telephone, Date dateInitialize, Date dateRetired) {
+    public Provider(String name, String telephone) {
         this.name = name;
         this.telephone = telephone;
-        this.dateInitialize = dateInitialize;
-        this.dateRetired = dateRetired;
+    }
+
+    public Provider() {
+        super();
     }
 
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+
+</head>
+
+<body class="bg-dark">
+    <header th:replace="~{plantilla/template :: header}"> 
+
+    </header>
+
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card bg-dark" style="max-width: 350px;">
+            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-body">
+                <form th:action="@{/views/providers/save}" th:object="${provider}" method="post">
+                    <div class="form-group row mt-3 mb-3">
+                        <label class="col-md-4 text-white" for="name">Name: </label>
+                        <div class="col-md-6">
+                            <input type="text" th:field="*{name}" class="form-control form-control-sm bg-black text-white" id="name" placeholder="Name..." style="font-size: 14px;">
+                        </div>
+                        <label class="col-md-4 text-white" for="telephone">Telephone: </label>
+                        <div class="col-md-6">
+                            <input type="text" th:field="*{telephone}" class="form-control form-control-sm bg-black text-white" id="telephone" placeholder="1234" style="font-size: 14px;">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3 mb-3">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-outline-success btn-sm" value="Save" style="font-size: 14px;" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{plantilla/template :: footer}">
+
+    </footer>
+</body>
+
+</html>
