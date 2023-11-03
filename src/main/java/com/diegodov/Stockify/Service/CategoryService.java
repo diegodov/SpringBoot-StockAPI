@@ -3,7 +3,6 @@ package com.diegodov.Stockify.Service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.diegodov.Stockify.Model.Category;
@@ -12,7 +11,7 @@ import com.diegodov.Stockify.Repository.CategoryRepository;
 @Service
 public class CategoryService {
 
-    @Autowired
+    
     private final CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {

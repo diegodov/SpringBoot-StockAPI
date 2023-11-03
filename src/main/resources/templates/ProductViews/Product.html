@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+
+</head>
+
+<body class="bg-dark">
+    <header th:replace="~{plantilla/template :: header}"> 
+
+    </header>
+
+    <div class="container text-center text-white">
+        <h1>Products</h1>
+        <a class="btn btn-success btn-sm" th:href="@{/views/products/add}" th:text="'New Product'" title="'Add provider'"></a>
+        
+        <table class="table text-white table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Getted</th>
+                    <th scope="col">Expire</th>
+                    <th scope="col">Provider</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Functions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="pd : ${productList} ">
+                    <td th:text="${pd.id}"></td>
+                    <td th:text="${pd.name}"></td>
+                    <td th:text="${pd.category.name}"></td>
+                    <td th:text="${pd.dateGetted}"></td>
+                    <td th:text="${pd.dateExpired}"></td>
+                    <td th:text="${pd.provider.name}"></td>
+                    <td th:text="${pd.cost}"></td>
+                    <td th:text="${pd.stock}"></td>
+                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/products/details/}+${pd.id}" th:text="'Edit'"
+                            title="'Editar Registro'"></a>
+                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/products/delete/}+${pd.id}" th:text="'Delete'"
+                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    
+    
+    <footer th:replace="~{plantilla/template :: footer}">
+
+    </footer>
+</body>
+
+</html>
