@@ -8,7 +8,12 @@ public class HomeController {
     
     @GetMapping({"/index","/"})
     public String index(){
-        return "index";
+        return "index.html";
+    }
+
+    @GetMapping ("/login")
+    public String login(){
+        return "LoginViews/Login";
     }
 
 }
