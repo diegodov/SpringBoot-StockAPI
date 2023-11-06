@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{Layout/template :: head}">
+
+</head>
+
+<body class="bg-dark">
+    <header th:replace="~{Layout/template :: header}"> 
+
+    </header>
+
+    <!DOCTYPE html>
+<html lang="en">
+    <div class="container mt-4">
+        <h1>Registrar Venta</h1>
+        <form th:action="@{/registrar-venta}" method="post" th:object="${venta}">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select class="form-select" id="product" name="product" th:field="*{products}">
+                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" class="form-control" id="cantidad" name="cantidad" th:field="*{cantidad}">
+                    </div>
+                    <div class="form-group">
+                        <label for="ci">Documento de Identidad (CI):</label>
+                        <input type="text" class="form-control" id="ci" name="ci" th:field="*{ci}">
+                    </div>
+                    <button type="button" class="btn btn-primary">Asignar Cliente</button>
+                    <button type="button" class="btn btn-primary">Registrar Cliente</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="precioUnitario">Precio Unitario:</label>
+                        <input type="text" class="form-control" id="precioUnitario" th:field="*{precioUnitario}" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button type="button" class="btn btn-success" id="agregarProducto" th:onclick="agregarProducto()">Añadir a la Lista</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="container mt-4">
+        <h3>Lista de Productos:</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Precio Total</th>
+                </tr>
+            </thead>
+            <tbody id="productosList" th:each="producto : ${venta.productos}">
+                <tr>
+                    <td th:text="${producto.producto}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td th:text="${producto.precioUnitario}"></td>
+                    <td th:text="${producto.precioTotal}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Total Venta: <span id="totalVenta" th:text="${venta.totalVenta}"></span></h4>
+        <button type="button" class="btn btn-success" th:onclick="registrarVenta()">Registrar Venta</button>
+    </div>
+
+    <!-- Agrega los enlaces a los archivos de JavaScript para jQuery y Bootstrap si aún no lo has hecho -->
+    <script>
+        // Aquí puedes agregar tu script para calcular el precio unitario, el precio total, 
+        // agregar productos a la lista y calcular el total de la venta.
+    </script>
+</body>
+</html>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <footer th:replace="~{Layout/template :: footer}">
+
+    </footer>
+</body>
+
+</html>
