@@ -46,12 +46,12 @@ public class ProductService {
     }
 
     //show by id
-    public Product showDetails(Long id){
+    public Product findById(Long id){
         return productRepository.findById(id).orElse(null);
     }
     
     //show all
-    public List<Product> showAll() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 

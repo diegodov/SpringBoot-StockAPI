@@ -39,7 +39,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String showAll(Model model) {
-        List<Product> productList = productService.showAll();
+        List<Product> productList = productService.findAll();
         model.addAttribute("title", "Product list");
         model.addAttribute("productList", productList);
         return "ProductViews/Product";
@@ -67,7 +67,7 @@ public class ProductController {
     public String details(@PathVariable("id") Long id, Model model) {
         List<Provider> providers = providerService.showAll();
         List<Category> categories = categoryService.showAll();
-        Product Product = productService.showDetails(id);
+        Product Product = productService.findById(id);
         model.addAttribute("title", "Edit Product");
         model.addAttribute("id", id);
         model.addAttribute("Product", Product);

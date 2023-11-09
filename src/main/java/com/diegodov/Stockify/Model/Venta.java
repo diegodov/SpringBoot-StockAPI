@@ -20,28 +20,68 @@ public class Venta {
 
     @Column (name = "cantidad")
     private int cantidad;
-
+    
+    @Column (name = "precio")
+    private double precio;
+    
     @Column (name = "total")
     private double total;
-
+    
     @ManyToOne
     @JoinColumn(name = "id_producto")
     private Product producto;
 
-    @OneToOne
-    @JoinColumn(name = "id_cliente")
-    private Client cliente;
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public Product getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Product producto) {
+        this.producto = producto;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = producto.getCost();
+    }
 
     public Venta() {
         super();
     }
 
-    public Venta(int cantidad, double precio, double total, Product producto, Client cliente) {
+    public Venta(Product product, int cantidad, double precio, double total) {
         super();
+        this.precio = precio;
         this.cantidad = cantidad;
         this.total = total;
-        this.producto = producto;
-        this.cliente = cliente;
+        this.producto = product;
     }
+
+
 }

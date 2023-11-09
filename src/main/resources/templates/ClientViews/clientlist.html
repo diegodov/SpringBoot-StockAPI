@@ -1,55 +1,57 @@
-<!DOclYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{Layout/template :: head}">
 
+    
 </head>
 
-<body class="bg-dark">
-    <header th:replace="~{Layout/template :: header}"> 
+    <body>
+        <header th:replace="~{Layout/template :: header}"> 
 
-    </header>
+        </header>
 
-    <div class="container text-center text-white">
+        <div class="d-flex justify-content-center vh-100 bg-dark">
+            <div class="card shadow bg-white rounded mt-5 m-5">
+                <div class="card-header bg-black text-white">
+                    <h1 class="text-center">Clientes</h1>
+                </div>
+                <div class="card-body bg-dark">
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">R.U.C.</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Razon Social</th>
+                                <th scope="col">Funciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="cl : ${clientList}">
+                                <td th:text="${cl.id}"></td>
+                                <td th:text="${cl.name}"></td>
+                                <td th:text="${cl.lastName}"></td>
+                                <td th:text="${cl.ruc}"></td>
+                                <td th:text="${cl.telephone}"></td>
+                                <td th:text="${cl.razonSocial}"></td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" th:href="@{/views/clients/details/}+${cl.id}" th:text="'Edit'"
+                                        title="'Editar Registro'"></a>
+                                    <a class="btn btn-danger btn-sm" th:href="@{/views/clients/delete/}+${cl.id}" th:text="'Delete'"
+                                        title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-        <h1>Clientes</h1>
+        <footer th:replace="~{Layout/template :: footer}">  
 
-        <table class="table text-white">
-
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">R.U.C.</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Razon Social</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each="cl : ${clientList} ">
-                    <td th:text="${cl.id}"></td>
-                    <td th:text="${cl.name}"></td>
-                    <td th:text="${cl.lastName}"></td>
-                    <td th:text="${cl.ruc}"></td>
-                    <td th:text="${cl.telephone}"></td>
-                    <td th:text="${cl.razonSocial}"></td>
-                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/clients/details/}+${cl.id}" th:text="'Edit'"
-                            title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/clients/delete/}+${cl.id}" th:text="'Delete'"
-                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
-        
-    </div>
-
-    <footer th:replace="~{Layout/template :: footer}">
-
-    </footer>
-</body>
-
+        </footer>
+    </body>
 </html>

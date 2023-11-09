@@ -1,5 +1,7 @@
 package com.diegodov.Stockify.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.diegodov.Stockify.Model.Client;
@@ -26,7 +28,7 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
-    public Iterable<Client> findAll() {
+    public List<Client> findAll() {
         return clientRepository.findAll();
     }
     

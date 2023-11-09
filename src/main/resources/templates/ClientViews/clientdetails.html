@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{Layout/template :: head}">
+
+</head>
+
+<body class="bg-dark">
+    <header th:replace="~{Layout/template :: header}"> 
+
+    </header>
+
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card bg-dark" style="max-width: 300px;">
+            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-body">
+
+                <form th:action="@{/views/clients/update/}+${client.id} " th:object="${client}" method="post">
+                    <div class="form-group row mt-3 mb-3">
+
+                        <div class="mt-3">
+                            <label class="col-md-4 text-white" for="name">Nombre: </label>
+                            <div class="col-md-8">
+                                <input type="text" th:field="*{name}" class="form-control form-control-sm bg-white text-dark" id="name" placeholder="nombre" style="font-size: 14px;">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label class="col-md-4 text-white" for="lastname">Apellido: </label>
+                            <div class="col-md-8">
+                                <input type="text" th:field="*{lastName}" class="form-control form-control-sm bg-white text-dark" id="lastname" placeholder="apellidos" style="font-size: 14px;">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="col-md-4 text-white" for="telephone">R.U.C.: </label>
+                            <div class="col-md-8">
+                                <input type="text" th:field="*{ruc}" class="form-control form-control-sm bg-white text-dark" id="ruc" placeholder="ruc" style="font-size: 14px;">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="col-md-4 text-white" for="telephone">Telefono: </label>
+                            <div class="col-md-8">
+                                <input type="tel" th:field="*{telephone}" class="form-control form-control-sm bg-white text-dark" id="telephone" placeholder="telefono" style="font-size: 14px;">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="col-md-8 text-white" for="razonsocial">Razon Social: </label>
+                            <div class="col-md-8">
+                                <input type="tel" th:field="*{razonSocial}" class="form-control form-control-sm bg-white text-dark" id="telephone" placeholder="Razon social" style="font-size: 14px;">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row mt-3 mb-3">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Save" style="font-size: 14px;" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{Layout/template :: footer}">
+
+    </footer>
+</body>
+
+</html>

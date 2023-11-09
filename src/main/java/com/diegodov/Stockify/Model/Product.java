@@ -3,6 +3,7 @@ package com.diegodov.Stockify.Model;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import org.hibernate.boot.archive.scan.spi.ClassDescriptor.Categorization;
 import org.springframework.cglib.core.Local;
 
 import jakarta.persistence.Column;
@@ -111,8 +112,9 @@ public class Product {
         this.provider = provider;
     }
 
-    public Product(String name, double cost, int stock, LocalDate dateGetted, Date dateExpired, Category category,
+    public Product(Long id, String name, double cost, int stock, LocalDate dateGetted, Date dateExpired, Category category,
             Provider provider) {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.stock = stock;
@@ -120,6 +122,13 @@ public class Product {
         this.dateExpired = dateExpired;
         this.category = category;
         this.provider = provider;
+    }
+
+    public Product(Long id, String name, Category category, double cost) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.cost = cost;
     }
 
     public Product() {

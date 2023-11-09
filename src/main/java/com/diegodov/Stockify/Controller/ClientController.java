@@ -54,11 +54,20 @@ public class ClientController {
         return "redirect:/views/clients/";
     }
     
-    @PutMapping("/update/{id}")
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable("id") Long id, Model model) {
+        Client client = clientService.findById(id);
+        model.addAttribute("title", "Editar Cliente");
+        model.addAttribute("id", id);
+        model.addAttribute("client", client);
+        return "ClientViews/clientdetails";
+    }
+
+    @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, @Valid Client client, BindingResult result, Model model) {
         if (result.hasErrors()) {
             client.setId(id);
-            return "ClientViews/clientform";
+            return "ClientViews/clientdetails";
         }
         clientService.saveClient(client);
         return "redirect:/views/clients/";
