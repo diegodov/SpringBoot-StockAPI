@@ -6,7 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -30,6 +32,10 @@ public class Venta {
     @ManyToOne
     @JoinColumn(name = "id_producto")
     private Product producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Client client;
 
     public Long getId() {
         return id;
@@ -63,6 +69,14 @@ public class Venta {
         this.producto = producto;
     }
 
+    public Client getCliente() {
+        return client;
+    }
+
+    public void setCliente(Client client) {
+        this.client = client;
+    }
+
     public double getPrecio() {
         return precio;
     }
@@ -75,13 +89,12 @@ public class Venta {
         super();
     }
 
-    public Venta(Product product, int cantidad, double precio, double total) {
+    public Venta(Product product, int cantidad, double precio, double total, Client client) {
         super();
         this.precio = precio;
         this.cantidad = cantidad;
         this.total = total;
         this.producto = product;
+        this.client = client;
     }
-
-
 }

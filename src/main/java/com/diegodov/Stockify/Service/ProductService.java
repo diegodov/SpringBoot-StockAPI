@@ -45,17 +45,17 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    //show by id
+    //find by id
     public Product findById(Long id){
         return productRepository.findById(id).orElse(null);
     }
     
-    //show all
+    //find all
     public List<Product> findAll() {
         return productRepository.findAll();
     }
 
-    //update function
+    //update
     public boolean update(Long id, String name, Double cost, int stock, Long providerId, Long categoryId) {
         
         Optional<Product> productOptional = productRepository.findById(id);

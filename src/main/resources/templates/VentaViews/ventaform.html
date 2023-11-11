@@ -33,12 +33,14 @@
         </div>
     
         <div style="display: inline-block; margin-left: 20px;">
-            <h1 th:text="${'Total: ' + ventaTotal}"></h1>
             <form class="mb-2" th:action="@{/views/venta/save}" method="post">
-                <button type="submit" class="btn btn-success">Terminar&nbsp;<i class="fa fa-check"></i>
+                <label for="client">Cliente: </label>
+                <input type="number" name="client" id="client" class="form-control">
+                <button type="submit" class="btn btn-success">Vender&nbsp;<i class="fa fa-check"></i>
                 </button>
                 <a th:href="@{/views/venta/clean}" class="btn btn-danger">Cancelar venta&nbsp;<i class="fa fa-trash"></i>
                 </a>
+                <h1 th:text="${'Total: ' + ventaTotal}"></h1>
             </form>
         </div>
         

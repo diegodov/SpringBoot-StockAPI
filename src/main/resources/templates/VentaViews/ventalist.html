@@ -10,6 +10,24 @@
 
     </header>
 
+    <div class="container">
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th scope="col">ID Venta</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="venta : ${ventas}">
+                    <td th:text="${venta.id}"></td>
+                    <td th:text="${venta.cliente.name}"></td>
+                    <td th:text="${venta.total}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <footer th:replace="~{Layout/template :: footer}">
 
