@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{Layout/template :: head}">
+
+</head>
+
+<body class="bg-dark">
+    <header th:replace="~{Layout/template :: header}"> 
+
+    </header>
+
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card bg-dark" style="max-width: 500px;">
+            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-body">
+                <form th:action="@{/views/user/save}" th:object="${user}" method="post">
+                    <div class="form-group row mt-3 mb-3">
+                        <label class="col-md-4 text-white" for="username">Usuario: </label>
+                        <div class="col-md-8">
+                            <input type="text" th:field="*{username}" class="form-control form-control-sm bg-white text-dark" id="name" placeholder="nombre de usuario..." style="font-size: 14px;">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3 mb-3">
+                        <label class="col-md-5 text-white" for="password">Contraseña: </label>
+                        <div class="col-md-7">
+                            <input type="password" th:field="*{password}" class="form-control form-control-sm bg-white text-dark" id="name" placeholder="contraseña" style="font-size: 14px;">
+                        </div>
+                    </div>
+                    <div class="form-group row mt-3 mb-3">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" style="font-size: 14px;" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{Layout/template :: footer}">
+
+    </footer>
+</body>
+
+</html>

@@ -10,23 +10,25 @@
 
     </header>
 
-    <div class="container">
+    <div class="container text-white">
+        <h2>Historial de Ventas</h2>
         <table class="table text-white">
-            <thead>
-                <tr>
-                    <th scope="col">ID Venta</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="venta : ${ventas}">
-                    <td th:text="${venta.id}"></td>
-                    <td th:text="${venta.cliente.name}"></td>
-                    <td th:text="${venta.total}"></td>
-                </tr>
-            </tbody>
+            <tr>
+                <th>Id</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+            <tr th:each="venta : ${ventas}">
+                <td th:text="${venta.id}"></td>
+                <td th:text="${venta.cliente.name}"></td>
+                <td th:text="${venta.total}"></td>
+                <td>
+                    <a th:href="@{/venta/{id}/eliminar(id=${venta.id})}" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
         </table>
+
     </div>
 
     <footer th:replace="~{Layout/template :: footer}">

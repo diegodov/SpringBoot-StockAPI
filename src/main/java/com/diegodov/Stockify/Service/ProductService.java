@@ -21,15 +21,9 @@ public class ProductService {
     private CategoryRepository categoryRepository;
     private ProviderRepository providerRepository;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CategoryRepository categoryRepository, ProviderRepository providerRepository) {
         this.productRepository = productRepository;
-    }
-
-    public void CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-    }
-
-    public void ProviderService(ProviderRepository providerRepository) {
         this.providerRepository = providerRepository;
     }
 
@@ -77,12 +71,5 @@ public class ProductService {
 
         return false; // Devuelve false si el producto no se encontró o no se pudo actualizar
     }
-
-    
-
-
-
-
-
 
 }

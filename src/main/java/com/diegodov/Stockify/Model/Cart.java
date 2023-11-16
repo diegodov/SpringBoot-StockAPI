@@ -12,6 +12,8 @@ public class Cart extends Product {
 
     public Double ventaTotal;
 
+    public static List<Cart> cart = new ArrayList<>();
+
     public Double getVentaTotal() {
         return ventaTotal;
     }
@@ -44,8 +46,6 @@ public class Cart extends Product {
         this.quantity = quantity;
         this.total = total;
     }
-
-    public static List<Cart> cart = new ArrayList<>();
 
     public static void add(Cart cartItem) {
         cart.add(cartItem);
