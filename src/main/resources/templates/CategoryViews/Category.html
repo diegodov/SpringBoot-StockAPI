@@ -12,9 +12,9 @@
 
     <div class="container text-center text-white">
 
-        <h1>Categories</h1>
+        <h1>Categorias</h1>
 
-        <a class="btn btn-success btn-sm" th:href="@{/views/categories/add}" th:text="'New category'" title="'Add category'"></a>
+        <a class="btn btn-success btn-sm" th:href="@{/views/categories/add}" th:text="'Nueva Categoria'" title="'Add category'"></a>
 
         <table class="table text-white">
 
@@ -30,9 +30,9 @@
                 <tr th:each="ct : ${categoryList} ">
                     <td th:text="${ct.id}"></td>
                     <td th:text="${ct.name}"></td>
-                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/categories/details/}+${ct.id}" th:text="'Edit'"
+                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/categories/details/}+${ct.id}" th:text="'Editar'"
                             title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/categories/delete/}+${ct.id}" th:text="'Delete'"
+                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/categories/delete/}+${ct.id}" th:text="'Eliminar'"
                             title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
                     </td>
                 </tr>

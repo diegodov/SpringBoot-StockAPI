@@ -14,7 +14,7 @@
         <div class="card bg-dark" style="max-width: 500px;">
             <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
             <div class="card-body">
-                <form th:action="@{/views/user/save}" th:object="${user}" method="post">
+                <form th:action="@{'/views/user/update/' + ${id}}" th:object="${user}" method="post">
                     <div class="form-group">
                         <label for="rol" class="text-white">Rol:</label>
                         <select th:field="*{rol}" class="form-control form-control-sm bg-black text-white" id="rol" style="font-size: 14px;">

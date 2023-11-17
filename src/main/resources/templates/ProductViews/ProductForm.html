@@ -16,29 +16,29 @@
             <div class="card-body">
                 <form th:action="@{/views/products/save}" th:object="${Product}" method="post">
                     <div class="form-group">
-                        <label for="name" class="text-white">Name:</label>
+                        <label for="name" class="text-white">Nombre:</label>
                         <input type="text" th:field="*{name}" class="form-control form-control-sm bg-black text-white" id="name" placeholder="Name..." style="font-size: 14px;">
                     </div>
                     <div class="form-group">
-                        <label for="category" class="text-white">Category:</label>
+                        <label for="category" class="text-white">Categoria:</label>
                         <select th:field="*{category}" class="form-control form-control-sm bg-black text-white" id="category" style="font-size: 14px;">
                             <option value="">Select a Category</option>
                             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="dateExpired" class="text-white">Date Expired:</label>
+                        <label for="dateExpired" class="text-white">Fecha de Vencimiento:</label>
                         <input type="date" th:field="*{dateExpired}" class="form-control form-control-sm bg-black text-white" id="dateExpired" style="font-size: 14px;">
                     </div>
                     <div class="form-group">
-                        <label for="provider" class="text-white">Provider:</label>
+                        <label for="provider" class="text-white">Proveedor:</label>
                         <select th:field="*{provider}" class="form-control form-control-sm bg-black text-white" id="provider" style="font-size: 14px;">
                             <option value="">Select a Provider</option>
                             <option th:each="provider : ${providers}" th:value="${provider.id}" th:text="${provider.name}"></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cost" class="text-white">Cost:</label>
+                        <label for="cost" class="text-white">Costo:</label>
                         <input type="number" th:field="*{cost}" class="form-control form-control-sm bg-black text-white" id="cost" placeholder="0.00" style="font-size: 14px;">
                     </div>
                     <div class="form-group">
@@ -46,7 +46,7 @@
                         <input type="number" th:field="*{stock}" class="form-control form-control-sm bg-black text-white" id="stock" placeholder="0" style="font-size: 14px;">
                     </div>
                     <div class="form-group mt-3">
-                        <input type="submit" class="btn btn-outline-success btn-sm" value="Save" style="font-size: 14px;">
+                        <input type="submit" class="btn btn-success btn-sm" value="Guardar" style="font-size: 14px;">
                     </div>
                 </form>
             </div>
