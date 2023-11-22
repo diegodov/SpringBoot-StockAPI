@@ -40,7 +40,7 @@ public class ProductController {
     @GetMapping("/")
     public String showAll(Model model) {
         List<Product> productList = productService.findAll();
-        model.addAttribute("title", "Product list");
+        model.addAttribute("title", "Lista de Productos");
         model.addAttribute("productList", productList);
         return "ProductViews/Product";
     }
@@ -50,7 +50,7 @@ public class ProductController {
         List<Provider> providers = providerService.showAll();
         List<Category> categories = categoryService.showAll();
         Product Product = new Product();
-        model.addAttribute("title", "New Product");
+        model.addAttribute("title", "Nuevo Producto");
         model.addAttribute("Product", Product);
         model.addAttribute("providers", providers);
         model.addAttribute("categories", categories);
@@ -68,7 +68,7 @@ public class ProductController {
         List<Provider> providers = providerService.showAll();
         List<Category> categories = categoryService.showAll();
         Product Product = productService.findById(id);
-        model.addAttribute("title", "Edit Product");
+        model.addAttribute("title", "Editar Producto");
         model.addAttribute("id", id);
         model.addAttribute("Product", Product);
         model.addAttribute("providers", providers);

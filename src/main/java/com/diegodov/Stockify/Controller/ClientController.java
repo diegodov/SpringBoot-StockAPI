@@ -26,7 +26,7 @@ public class ClientController {
 
     @GetMapping("/")
     public String showAll(Model model) {
-        model.addAttribute("title", "Client list");
+        model.addAttribute("title", "Lista de Clientes");
         model.addAttribute("clientList", clientService.findAll());
         return "ClientViews/clientlist";
     }
@@ -40,7 +40,7 @@ public class ClientController {
     @GetMapping("/form")
     public String form(Model model) {
         Client client = new Client();
-        model.addAttribute("title", "New Client");
+        model.addAttribute("title", "Nuevo Cliente");
         model.addAttribute("client", client);
         return "ClientViews/clientform";
     }

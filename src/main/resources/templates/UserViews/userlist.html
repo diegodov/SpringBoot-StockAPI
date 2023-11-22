@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{Layout/template :: head}">
+
+    
+</head>
+
+    <body>
+        <header th:replace="~{Layout/template :: header}"> 
+
+        </header>
+
+        <div class="d-flex justify-content-center vh-100 bg-dark">
+            <div class="card shadow bg-white rounded mt-5 m-5">
+                <div class="card-header bg-black text-white">
+                    <h1 class="text-center">Usuarios</h1>
+                </div>
+                <div class="card-body bg-dark">
+                    <table class="table text-white">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre de usuario</th>
+                                <th scope="col">Contraseña</th>
+                                <th scope="col">Rol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="us : ${users}">
+                                <td th:text="${us.id}"></td>
+                                <td th:text="${us.username}"></td>
+                                <td th:text="${us.password}"></td>
+                                <td th:text="${us.rol?.name}"></td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm" th:href="@{/views/user/edit/}+${us.id}" th:text="'Edit'"
+                                        title="'Editar Usuario'"></a>
+                                    <a class="btn btn-danger btn-sm" th:href="@{/views/clients/delete/}+${us.id}" th:text="'Delete'"
+                                        title="'Borrar Usuario'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="~{Layout/template :: footer}">  
+
+        </footer>
+    </body>
+</html>

@@ -11,21 +11,21 @@
     </header>
 
     <div class="container text-center text-white">
-        <h1>Products</h1>
-        <a class="btn btn-success btn-sm" th:href="@{/views/products/add}" th:text="'New Product'" title="'Add provider'"></a>
+        <h1>Productos</h1>
+        <a class="btn btn-success btn-sm" th:href="@{/views/products/add}" th:text="'Nuevo Producto'" title="'Agregar Producto'"></a>
         
         <table class="table text-white table-borderless">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Getted</th>
-                    <th scope="col">Expire</th>
-                    <th scope="col">Provider</th>
-                    <th scope="col">Cost</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Obtenido</th>
+                    <th scope="col">Vencimiento</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Costo</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Functions</th>
+                    <th scope="col">Funciones</th>
                 </tr>
             </thead>
 
@@ -39,9 +39,9 @@
                     <td th:text="${pd.provider.name}"></td>
                     <td th:text="${pd.cost}"></td>
                     <td th:text="${pd.stock}"></td>
-                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/products/details/}+${pd.id}" th:text="'Edit'"
+                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/products/details/}+${pd.id}" th:text="'Editar'"
                             title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/products/delete/}+${pd.id}" th:text="'Delete'"
+                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/products/delete/}+${pd.id}" th:text="'Eliminar'"
                             title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
                     </td>
                 </tr>

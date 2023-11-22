@@ -39,7 +39,7 @@ public class CategoryController {
     @GetMapping("/add")
     public String add(Model model) {
         Category category = new Category();
-        model.addAttribute("title", "Categories");
+        model.addAttribute("title", "Nueva Categoria");
         model.addAttribute("category", category);
         return "CategoryViews/CategoryForm";
     }
@@ -53,7 +53,7 @@ public class CategoryController {
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Long id, Model model) {
         Category category = categoryService.showDetails(id);
-        model.addAttribute("title", "Modify category");
+        model.addAttribute("title", "Editar categoria");
         model.addAttribute("id", id);
         model.addAttribute("category", category);
         return "CategoryViews/UpdateCategory";

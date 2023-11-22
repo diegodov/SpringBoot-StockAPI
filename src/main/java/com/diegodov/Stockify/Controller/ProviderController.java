@@ -31,7 +31,7 @@ public class ProviderController {
     @GetMapping("/")
     public String showAll(Model model) {
         List<Provider> providerList = ProviderService.showAll();
-        model.addAttribute("title", "Provider list");
+        model.addAttribute("title", "Lista de Proveedores");
         model.addAttribute("providerList", providerList);
         return "ProviderViews/Provider";
     }
@@ -39,7 +39,7 @@ public class ProviderController {
     @GetMapping("/add")
     public String add(Model model) {
         Provider provider = new Provider();
-        model.addAttribute("title", "New Provider");
+        model.addAttribute("title", "Nuevo Proveedor");
         model.addAttribute("provider", provider);
         return "ProviderViews/ProviderForm";
     }
@@ -53,7 +53,7 @@ public class ProviderController {
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Long id, Model model) {
         Provider provider = ProviderService.details(id);
-        model.addAttribute("title", "Edit Provider");
+        model.addAttribute("title", "Editar Proveedor");
         model.addAttribute("id", id);
         model.addAttribute("provider", provider);
         return "ProviderViews/ProviderUpd";
