@@ -3,14 +3,21 @@
 
 <head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Layout</title>
+    <title>Stockify</title>
     <link href="/webjars/bootstrap/5.2.0/css/bootstrap.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+        header {
+            font-family:'Roboto Mono', monospace;
+        }
         body {
-            background-image: url('static/img/background.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            /* Otras propiedades CSS, si es necesario */
+            font-family:'Roboto Mono', monospace;
+        }
+        footer {
+            font-family:'Roboto Mono', monospace;
         }
     </style>
 </head>
@@ -19,9 +26,21 @@
 
     <!-- Barra de navegacion -->
     <header th:fragment="header">
-        <nav class="navbar navbar-expand-sm bg-black navbar-dark">
+        <nav class="navbar navbar-expand-sm outline-color">
+        <style>
+            .navbar {
+                background-color: black;
+            }
+
+            .navbar-nav .nav-link {
+                background-color: rgb(255, 174, 0);
+                color: black;
+                
+
+            }
+        </style>
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Stockify</a>
+                <a class="navbar-brand" href="/" style="color: rgb(177, 115, 0); text-shadow: white;">Stockify</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -102,7 +121,7 @@
 <!-- Pie de pagina -->
 <footer th:fragment="footer" class="text-center fixed-bottom">
     <div class="container">
-        <p style="color:white;">Copyright Diego Dominguez, Gustavo Vera y Aragón, Orlando Gonzalez &copy; -2023
+        <p style="color:white;">Copyright Ing. Diego Dominguez (diegodov) &copy; -2023
         </p>
     </div>
     <script type="text/javascript" src="/webjars/jquery/3.6.1/jquery.min.js"></script>
