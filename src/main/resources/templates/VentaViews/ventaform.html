@@ -5,80 +5,75 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
     
     <div class="container col-12 text-white">
-        
+        <h2>Carrito</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered text-white">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cartItem, itemStat : ${cartList}">
+                        <td th:text="${cartItem.id}"></td>
+                        <td th:text="${cartItem.name}"></td>
+                        <td th:text="${cartItem.category.name}"></td>
+                        <td th:text="${cartItem.cost}"></td>
+                        <td th:text="${cartItem.quantity}"></td>
+                        <td th:text="${cartItem.total}"></td>
+                        <td>
+                            <form th:action="@{/views/venta/removeitem}" method="post">
+                                <input type="hidden" name="index" th:value="${itemStat.index}" />
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-
-        <div style="display: inline-block;">
+        <div style="display: flex; justify-content: start;">
             <form th:object="${cart}" th:action="@{/views/venta/addtocart}" method="post">
-                <div class="form-group mb-3">
+                <div class="form-group mb-2">
                     <div>
-                        <label for="id">Identificador de Producto</label>
+                        <label for="id">Identificador de Producto:</label>
                         <input autofocus autocomplete="off" name="id" id="id"
-                                placeholder="Escribe el identificador del producto y presiona enter para agregarlo al carrito de compras"
+                                placeholder="identificador del producto"
                                 type="text" th:field="*{id}" class="form-control">
                     </div>
                     <div>
                         <label for="cantidad">Cantidad: </label>
-                        <input type="number" th:field="*{quantity}" name="cantidad" id="cantidad" min="1" max="100" value="1" class="form-control">
+                        <input type="number" th:field="*{quantity}" placeholder="indicar la cantidad" name="cantidad" id="cantidad" min="1" max="100" value="1" class="form-control">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Agregar al carrito</button>
             </form>
         </div>
     
-        <div style="display: inline-block; margin-left: 20px;">
+        <div style="display: flex; justify-content: end;">
             <form class="mb-2" th:action="@{/views/venta/save}" method="post">
+                <h1 th:text="${'Total: ' + ventaTotal}"></h1>
                 <label for="client">Cliente: </label>
-                <input type="number" name="client" id="client" class="form-control">
+                <input type="number" name="client" id="client" class="form-control mb-2" placeholder="identificador de cliente">
                 <button type="submit" class="btn btn-success">Vender&nbsp;<i class="fa fa-check"></i>
                 </button>
                 <a th:href="@{/views/venta/clean}" class="btn btn-danger">Cancelar venta&nbsp;<i class="fa fa-trash"></i>
                 </a>
-                <h1 th:text="${'Total: ' + ventaTotal}"></h1>
             </form>
         </div>
-        
-        <h2>Carrito</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered text-white">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="cartItem, itemStat : ${cartList}">
-                            <td th:text="${cartItem.id}"></td>
-                            <td th:text="${cartItem.name}"></td>
-                            <td th:text="${cartItem.category.name}"></td>
-                            <td th:text="${cartItem.cost}"></td>
-                            <td th:text="${cartItem.quantity}"></td>
-                            <td th:text="${cartItem.total}"></td>
-                            <td>
-                                <form th:action="@{/views/venta/removeitem}" method="post">
-                                    <input type="hidden" name="index" th:value="${itemStat.index}" />
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
     </div>
-    
     
     <footer th:replace="~{Layout/template :: footer}">
 
