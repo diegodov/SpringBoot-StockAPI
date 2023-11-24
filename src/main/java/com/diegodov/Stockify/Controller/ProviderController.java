@@ -1,7 +1,5 @@
 package com.diegodov.Stockify.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,58 +20,55 @@ import jakarta.validation.Valid;
 public class ProviderController {
     
     @Autowired
-    private final ProviderService ProviderService;
+    private ProviderService providerService;
 
-    ProviderController(ProviderService ProviderService) {
-        this.ProviderService = ProviderService;
-    }
-
+    // Muestra todos los registros
     @GetMapping("/")
     public String showAll(Model model) {
-        List<Provider> providerList = ProviderService.findAll();
         model.addAttribute("title", "Lista de Proveedores");
-        model.addAttribute("providerList", providerList);
+        model.addAttribute("providers", providerService.findAll());
         return "ProviderViews/Provider";
     }
 
+    // Agrega un registro nuevo
     @GetMapping("/add")
     public String add(Model model) {
-        Provider provider = new Provider();
         model.addAttribute("title", "Nuevo Proveedor");
-        model.addAttribute("provider", provider);
+        model.addAttribute("provider", new Provider());
         return "ProviderViews/ProviderForm";
     }
 
+    // Guarda el registro nuevo
     @PostMapping("/save")
     public String save(@ModelAttribute Provider provider){
-        ProviderService.save(provider);
+        providerService.save(provider);
         return "redirect:/views/providers/";
     }
 
-    @GetMapping("/details/{id}")
-    public String details(@PathVariable("id") Long id, Model model) {
-        Provider provider = ProviderService.details(id);
+    // Edita un registro enviando el id a la vista de edicion
+    @GetMapping("/edit/{id}")
+    public String findById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("title", "Editar Proveedor");
         model.addAttribute("id", id);
-        model.addAttribute("provider", provider);
+        model.addAttribute("provider", providerService.findById(id));
         return "ProviderViews/ProviderUpd";
     }
 
+    // Elimina un registro
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
-        ProviderService.delete(id);
-        System.out.println("Registro eliminado");
+        providerService.delete(id);
         return "redirect:/views/providers/";
     }
 
-    @PostMapping("/edit/{id}")
-    public String update(@PathVariable("id") long id, @Valid Provider Provider, BindingResult result, Model model) {
+    // Actualiza un registro
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") long id, @Valid Provider provider, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            Provider.setId(id);
-            return "update-user";
+            provider.setId(id);
+            return "update-provider";
         }
-        ProviderService.save(Provider);
+        providerService.save(provider);
         return "redirect:/views/providers/";
     }
-
 }

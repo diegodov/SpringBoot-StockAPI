@@ -12,19 +12,22 @@
 
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card bg-dark" style="max-width: 300px;">
-            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-header bg-black text-white" style="font-size: 16px;">
+                <a href="/views/categories/" class="btn btn-sm btn-secondary float-right" style="font-size: 14px;">Regresar</a>
+                <span th:text="${title}"></span>
+            </div>
             <div class="card-body">
                 <form th:action="@{/views/categories/save}" th:object="${category}" method="post">
                     <div class="form-group row mt-3 mb-3">
-                        <label class="col-md-4 text-white" for="name">Categoria: </label>
+                        <label class="col-md-4 text-white" for="name">Nombre: </label>
                         <div class="col-md-8">
-                            <input type="text" th:field="*{name}" class="form-control form-control-sm bg-white text-dark" id="name" placeholder="nueva categoria..." style="font-size: 14px;">
+                            <input type="text" th:field="*{name}" class="form-control form-control-sm bg-black text-white" id="name" placeholder="nueva categoria..." style="font-size: 14px;">
                         </div>
                     </div>
                     <div class="form-group row mt-3 mb-3">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" style="font-size: 14px;" />
+                            <input type="submit" class="btn btn-warning btn-sm" value="Guardar" style="font-size: 14px;" />
                         </div>
                     </div>
                 </form>

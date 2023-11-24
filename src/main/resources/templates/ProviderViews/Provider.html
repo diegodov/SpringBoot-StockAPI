@@ -5,41 +5,48 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
 
-    <div class="container text-center text-white">
-        <h1>Proveedores</h1>
-        <a class="btn btn-success btn-sm" th:href="@{/views/providers/add}" th:text="'Nuevo Proveedor'" title="'Agregar Proveedor'"></a>
-        
-        <table class="table text-white table-borderless">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Fecha iniciado</th>
-                    <th scope="col">Functions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each="pv : ${providerList} ">
-                    <td th:text="${pv.id}"></td>
-                    <td th:text="${pv.name}"></td>
-                    <td th:text="${pv.telephone}"></td>
-                    <td th:text="${pv.dateInitialize}"></td>
-                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/providers/details/}+${pv.id}" th:text="'Editar'"
-                            title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/providers/delete/}+${pv.id}" th:text="'Eliminar'"
-                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
+    <div class="d-flex justify-content-center">
+        <div class="card shadow rounded mt-5 m-5">
+            <div class="card-header bg-black">
+                <h1 class="text-center text-warning" th:text="${title}" ></h1>
+            </div>
+            <div class="card-body bg-dark">
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary btn-sm" th:href="@{/views/providers/add}" th:text="'Registrar'"></a>
+                </div>
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Fecha de Inicio</th>
+                            <th scope="col">Fecha de Retiro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pv : ${providers}">
+                            <td th:text="${pv.id}" class="custom-td"></td>
+                            <td th:text="${pv.name}" class="custom-td"></td>
+                            <td th:text="${pv.telephone}" class="custom-td"></td>
+                            <td th:text="${pv.dateInitialize}" class="custom-td"></td>
+                            <td th:text="${pv.dateRetired}" class="custom-td"></td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" th:href="@{/views/providers/edit/}+${pv.id}" th:text="'Editar'"
+                                    title="'Editar Registro'"></a>
+                                <a class="btn btn-danger btn-sm" th:href="@{/views/providers/delete/}+${pv.id}" th:text="'Borrar'"
+                                    title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     
     

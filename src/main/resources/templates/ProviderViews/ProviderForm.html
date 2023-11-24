@@ -5,14 +5,17 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
 
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card bg-dark" style="max-width: 350px;">
-            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-header bg-black text-white" style="font-size: 16px;">
+                <a href="/views/providers/" class="btn btn-sm btn-secondary float-right" style="font-size: 14px;">Regresar</a>
+                <span th:text="${title}"></span>
+            </div>
             <div class="card-body">
                 <form th:action="@{/views/providers/save}" th:object="${provider}" method="post">
                     <div class="form-group row mt-3 mb-3">
@@ -28,7 +31,7 @@
                     <div class="form-group row mt-3 mb-3">
                         <div class="col-md-4"></div>
                         <div class="col-md-8">
-                            <input type="submit" class="btn btn-success btn-sm" value="Guardar" style="font-size: 14px;" />
+                            <input type="submit" class="btn btn-warning btn-sm" value="Guardar" style="font-size: 14px;" />
                         </div>
                     </div>
                 </form>

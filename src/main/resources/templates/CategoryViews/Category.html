@@ -5,7 +5,7 @@
 
 </head>
 
-<body>
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
@@ -16,7 +16,7 @@
                 <h1 class="text-center text-warning" th:text="${title}" ></h1>
             </div>
             <div class="card-body bg-dark">
-                <div class="d-flex justify-content-start">
+                <div class="d-flex justify-content-center">
                     <a class="btn btn-primary btn-sm" th:href="@{/views/categories/add}" th:text="'Registrar'"></a>
                 </div>
                 <table class="table text-white">

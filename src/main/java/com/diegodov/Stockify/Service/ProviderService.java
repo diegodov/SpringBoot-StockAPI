@@ -39,7 +39,7 @@ public class ProviderService {
     }
 
     //show details by id
-    public Provider details(Long id) {
+    public Provider findById(Long id) {
         return providerRepository.findById(id).orElse(null);
     }
 
