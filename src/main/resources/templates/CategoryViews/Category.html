@@ -7,47 +7,40 @@
 
 <body>
     <header th:replace="~{Layout/template :: header}"> 
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-            body {
-                font-family: 'Roboto Mono', monospace;
-            }
-            
-        </style>
 
     </header>
 
-    <div class="container text-center bg-warning">
-
-        <h1>Categorias</h1>
-
-        <a class="btn btn-success btn-sm" th:href="@{/views/categories/add}" th:text="'Nueva Categoria'" title="'Add category'"></a>
-
-        <table class="table">
-
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Functions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each="ct : ${categoryList} ">
-                    <td th:text="${ct.id}"></td>
-                    <td th:text="${ct.name}"></td>
-                    <td><a class="btn btn-outline-success btn-sm" th:href="@{/views/categories/details/}+${ct.id}" th:text="'Editar'"
-                            title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/categories/delete/}+${ct.id}" th:text="'Eliminar'"
-                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
-        
+    <div class="d-flex justify-content-center">
+        <div class="card shadow rounded mt-5 m-5">
+            <div class="card-header bg-black">
+                <h1 class="text-center text-warning">Categorias</h1>
+            </div>
+            <div class="card-body bg-warning">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ct : ${categoryList}">
+                            <td th:text="${ct.id}" class="custom-td"></td>
+                            <td th:text="${ct.name}" class="custom-td"></td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" th:href="@{/views/categories/details/}+${ct.id}" th:text="'Editar'"
+                                    title="'Editar Registro'"></a>
+                                <a class="btn btn-danger btn-sm" th:href="@{/views/categories/delete/}+${ct.id}" th:text="'Borrar'"
+                                    title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    
     
     
     <footer th:replace="~{Layout/template :: footer}">

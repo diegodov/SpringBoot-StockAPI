@@ -2,6 +2,7 @@ package com.diegodov.Stockify.Controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.diegodov.Stockify.Model.Product;
 import com.diegodov.Stockify.Model.Rol;
 import com.diegodov.Stockify.Model.User;
 import com.diegodov.Stockify.Service.RolService;
@@ -22,18 +22,15 @@ import jakarta.validation.Valid;
 @RequestMapping("/views/user")
 public class UserController {
 
-    private final UserService userService;
-    private final RolService rolService;
-
-    public UserController(UserService userService, RolService rolService) {
-        this.userService = userService;
-        this.rolService = rolService;
-    }
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private RolService rolService;
 
     @GetMapping("/")
-    public String showAll(Model model) {
+    public String index(Model model) {
         model.addAttribute("title", "Lista de Usuarios");
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.findAll());
         return "UserViews/userlist";
     }
 
@@ -54,15 +51,13 @@ public class UserController {
             user.setId(id);
             return "update-user";
         }
-        userService.registerUser(user);
+        userService.save(user);
         return "redirect:/views/user/";
     }
 
-    
-
     @PostMapping("/save")
     public String saveUser(User user) {
-        userService.registerUser(user);
+        userService.save(user);
         return "redirect:/views/user/";
     }
 
@@ -73,5 +68,4 @@ public class UserController {
         model.addAttribute("user", new User());
         return "UserViews/registeruser";
     }
- 
 }
