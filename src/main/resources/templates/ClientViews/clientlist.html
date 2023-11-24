@@ -6,41 +6,44 @@
     
 </head>
 
-    <body>
+    <body class="bg-black">
         <header th:replace="~{Layout/template :: header}"> 
 
         </header>
 
-        <div class="d-flex justify-content-center vh-100 bg-dark">
-            <div class="card shadow bg-white rounded mt-5 m-5">
-                <div class="card-header bg-black text-white">
-                    <h1 class="text-center">Clientes</h1>
+        <div class="d-flex justify-content-center">
+            <div class="card shadow rounded mt-5 m-5">
+                <div class="card-header bg-black">
+                    <h1 class="text-center text-warning" th:text="${title}" ></h1>
                 </div>
                 <div class="card-body bg-dark">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary btn   -sm" th:href="@{/views/clients/add}" th:text="'Registrar'"></a>
+                    </div>
                     <table class="table text-white">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">R.U.C.</th>
+                                <th scope="col"></th>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
                                 <th scope="col">Telefono</th>
                                 <th scope="col">Razon Social</th>
-                                <th scope="col">Funciones</th>
+                                <th scope="col">R.U.C.</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="cl : ${clientList}">
-                                <td th:text="${cl.id}"></td>
-                                <td th:text="${cl.name}"></td>
-                                <td th:text="${cl.lastName}"></td>
-                                <td th:text="${cl.ruc}"></td>
-                                <td th:text="${cl.telephone}"></td>
-                                <td th:text="${cl.razonSocial}"></td>
+                            <tr th:each="cl : ${clients}">
+                                <td th:text="${cl.id}" class="custom-td"></td>
+                                <td th:text="${cl.name}" class="custom-td"></td>
+                                <td th:text="${cl.lastName}" class="custom-td"></td>
+                                <td th:text="${cl.telephone}" class="custom-td"></td>
+                                <td th:text="${cl.razonSocial}" class="custom-td"></td>
+                                <td th:text="${cl.ruc}" class="custom-td"></td>
                                 <td>
-                                    <a class="btn btn-warning btn-sm" th:href="@{/views/clients/details/}+${cl.id}" th:text="'Edit'"
+                                    <a class="btn btn-warning btn-sm" th:href="@{/views/clients/edit/}+${cl.id}" th:text="'Editar'"
                                         title="'Editar Registro'"></a>
-                                    <a class="btn btn-danger btn-sm" th:href="@{/views/clients/delete/}+${cl.id}" th:text="'Delete'"
+                                    <a class="btn btn-danger btn-sm" th:href="@{/views/products/delete/}+${cl.id}" th:text="'Borrar'"
                                         title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
                                 </td>
                             </tr>
