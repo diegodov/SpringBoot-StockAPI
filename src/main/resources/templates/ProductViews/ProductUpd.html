@@ -5,51 +5,54 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
 
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card bg-dark text-white" style="max-width: 300px;">
-            <div class="card-header bg-black text-white" th:text="${title}" style="font-size: 16px;"></div>
+            <div class="card-header bg-black text-white" style="font-size: 16px;">
+                <a href="/views/products/" class="btn btn-sm btn-secondary float-right" style="font-size: 14px;">Regresar</a>
+                <span th:text="${title}"></span>
+            </div>
             <div class="card-body">
-                <form th:action="@{'/views/products/edit/' + ${id}}" th:object="${Product}" method="POST">
+                <form th:action="@{'/views/products/edit/' + ${id}}" th:object="${product}" method="POST">
                     <!-- Cambiar el método a POST -->
                     <!-- Agregar campo oculto para indicar que es una solicitud PUT -->
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
-                        <label for="name" class="text-white">Name:</label>
+                        <label for="name" class="text-white">Nombre:</label>
                         <input type="text" th:field="*{name}" class="form-control form-control-sm bg-black text-white" id="name" placeholder="Name..." style="font-size: 14px;">
                     </div>
                     <div class="form-group">
-                        <label for="category" class="text-white">Category:</label>
+                        <label for="category" class="text-white">Categoria:</label>
                         <select th:field="*{category}" class="form-control form-control-sm bg-black text-white" id="category" style="font-size: 14px;">
                             <option value="">Select a Category</option>
                             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="dateExpired" class="text-white">Date Expired:</label>
+                        <label for="dateExpired" class="text-white">Fecha de caducidad:</label>
                         <input type="date" th:field="*{dateExpired}" class="form-control form-control-sm bg-black text-white" id="dateExpired" style="font-size: 14px;">
                     </div>
                     <div class="form-group">
-                        <label for="provider" class="text-white">Provider:</label>
+                        <label for="provider" class="text-white">Proveedor:</label>
                         <select th:field="*{provider}" class="form-control form-control-sm bg-black text-white" id="provider" style="font-size: 14px;">
                             <option value="">Select a Provider</option>
                             <option th:each="provider : ${providers}" th:value="${provider.id}" th:text="${provider.name}"></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="cost" class="text-white">Cost:</label>
+                        <label for="cost" class="text-white">Costo:</label>
                         <input type="number" th:field="*{cost}" class="form-control form-control-sm bg-black text-white" id="cost" placeholder="0.00" style="font-size: 14px;">
                     </div>
                     <div class="form-group">
-                        <label for="stock" class="text-white">Stock:</label>
+                        <label for="stock" class="text-white">Existencia:</label>
                         <input type="number" th:field="*{stock}" class="form-control form-control-sm bg-black text-white" id="stock" placeholder="0" style="font-size: 14px;">
                     </div>
                     <div class="form-group mt-3">
-                        <input type="submit" class="btn btn-outline-success btn-sm" value="Save" style="font-size: 14px;">
+                        <input type="submit" class="btn btn-warning btn-sm" value="Guardar" style="font-size: 14px;">
                     </div>
                 </form>
             </div>

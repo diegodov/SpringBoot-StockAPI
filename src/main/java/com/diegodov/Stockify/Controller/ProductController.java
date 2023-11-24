@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diegodov.Stockify.Model.Product;
-import com.diegodov.Stockify.Model.Provider;
-import com.diegodov.Stockify.Model.Category;
 import com.diegodov.Stockify.Service.CategoryService;
 import com.diegodov.Stockify.Service.ProductService;
 import com.diegodov.Stockify.Service.ProviderService;
@@ -26,56 +24,49 @@ import jakarta.validation.Valid;
 public class ProductController {
     
     @Autowired
-    private final ProductService productService;
-    private final ProviderService providerService;
-    private final CategoryService categoryService;
+    private ProductService productService;
+    @Autowired
+    private ProviderService providerService;
+    @Autowired
+    private CategoryService categoryService;
 
-    public ProductController(ProductService productService, ProviderService providerService,
-            CategoryService categoryService) {
-        this.productService = productService;
-        this.providerService = providerService;
-        this.categoryService = categoryService;
-    }
-
+    // Mostrar todos los registros
     @GetMapping("/")
     public String showAll(Model model) {
-        List<Product> productList = productService.findAll();
         model.addAttribute("title", "Lista de Productos");
-        model.addAttribute("productList", productList);
+        model.addAttribute("products", productService.findAll());
         return "ProductViews/Product";
     }
 
+    // Crear nuevo registro
     @GetMapping("/add")
     public String add(Model model) {
-        List<Provider> providers = providerService.findAll();
-        List<Category> categories = categoryService.findAll();
-        Product Product = new Product();
         model.addAttribute("title", "Nuevo Producto");
-        model.addAttribute("Product", Product);
-        model.addAttribute("providers", providers);
-        model.addAttribute("categories", categories);
+        model.addAttribute("Product", new Product());
+        model.addAttribute("providers", productService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "ProductViews/ProductForm";
     }
 
+    // Guardar registro
     @PostMapping("/save")
     public String save(@ModelAttribute Product Product){
         productService.save(Product);
         return "redirect:/views/products/";
     }
 
-    @GetMapping("/details/{id}")
-    public String details(@PathVariable("id") Long id, Model model) {
-        List<Provider> providers = providerService.findAll();
-        List<Category> categories = categoryService.findAll();
-        Product Product = productService.findById(id);
+    // Editar registro por id
+    @GetMapping("/edit/{id}")
+    public String findById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("title", "Editar Producto");
         model.addAttribute("id", id);
-        model.addAttribute("Product", Product);
-        model.addAttribute("providers", providers);
-        model.addAttribute("categories", categories);
+        model.addAttribute("product", productService.findById(id));
+        model.addAttribute("providers", providerService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "ProductViews/ProductUpd";
     }
 
+    // Eliminar registro por id
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         productService.delete(id);
@@ -83,13 +74,14 @@ public class ProductController {
         return "redirect:/views/products/";
     }
 
-    @PostMapping("/edit/{id}")
-    public String update(@PathVariable("id") long id, @Valid Product Product, BindingResult result, Model model) {
+    // Actualizar registro
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") long id, @Valid Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            Product.setId(id);
-            return "update-user";
+            product.setId(id);
+            return "update-product";
         }
-        productService.save(Product);
+        productService.save(product);
         return "redirect:/views/products/";
     }
 

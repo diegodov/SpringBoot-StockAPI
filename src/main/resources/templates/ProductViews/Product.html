@@ -5,49 +5,52 @@
 
 </head>
 
-<body class="bg-dark">
+<body class="bg-black">
     <header th:replace="~{Layout/template :: header}"> 
 
     </header>
 
-    <div class="container text-center text-white">
-        <h1>Productos</h1>
-        <a class="btn btn-success btn-sm" th:href="@{/views/products/add}" th:text="'Nuevo Producto'" title="'Agregar Producto'"></a>
-        
-        <table class="table text-white table-borderless">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Obtenido</th>
-                    <th scope="col">Vencimiento</th>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Costo</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Funciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each="pd : ${productList} ">
-                    <td th:text="${pd.id}"></td>
-                    <td th:text="${pd.name}"></td>
-                    <td th:text="${pd.category.name}"></td>
-                    <td th:text="${pd.dateGetted}"></td>
-                    <td th:text="${pd.dateExpired}"></td>
-                    <td th:text="${pd.provider.name}"></td>
-                    <td th:text="${pd.cost}"></td>
-                    <td th:text="${pd.stock}"></td>
-                    <td><a class="btn btn-outline-warning btn-sm" th:href="@{/views/products/details/}+${pd.id}" th:text="'Editar'"
-                            title="'Editar Registro'"></a>
-                        <a class="btn btn-outline-danger btn-sm" th:href="@{/views/products/delete/}+${pd.id}" th:text="'Eliminar'"
-                            title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
+    <div class="d-flex justify-content-center">
+        <div class="card shadow rounded mt-5 m-5">
+            <div class="card-header bg-black">
+                <h1 class="text-center text-warning" th:text="${title}" ></h1>
+            </div>
+            <div class="card-body bg-dark">
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-primary btn-sm" th:href="@{/views/products/add}" th:text="'Registrar'"></a>
+                </div>
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Fecha de Obtencion</th>
+                            <th scope="col">Fecha de Caducidad</th>
+                            <th scope="col">Existencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pd : ${products}">
+                            <td th:text="${pd.id}" class="custom-td"></td>
+                            <td th:text="${pd.name}" class="custom-td"></td>
+                            <td th:text="${pd.category.name}" class="custom-td"></td>
+                            <td th:text="${pd.provider.name}" class="custom-td"></td>
+                            <td th:text="${pd.dateGetted}" class="custom-td"></td>
+                            <td th:text="${pd.dateExpired}" class="custom-td"></td>
+                            <td th:text="${pd.stock}" class="custom-td"></td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" th:href="@{/views/products/edit/}+${pd.id}" th:text="'Editar'"
+                                    title="'Editar Registro'"></a>
+                                <a class="btn btn-danger btn-sm" th:href="@{/views/products/delete/}+${pd.id}" th:text="'Borrar'"
+                                    title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     
     
