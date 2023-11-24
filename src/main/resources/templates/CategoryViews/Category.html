@@ -13,10 +13,13 @@
     <div class="d-flex justify-content-center">
         <div class="card shadow rounded mt-5 m-5">
             <div class="card-header bg-black">
-                <h1 class="text-center text-warning">Categorias</h1>
+                <h1 class="text-center text-warning" th:text="${title}" ></h1>
             </div>
-            <div class="card-body bg-warning">
-                <table class="table">
+            <div class="card-body bg-dark">
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-primary btn-sm" th:href="@{/views/categories/add}" th:text="'Registrar'"></a>
+                </div>
+                <table class="table text-white">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -24,11 +27,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="ct : ${categoryList}">
+                        <tr th:each="ct : ${categories}">
                             <td th:text="${ct.id}" class="custom-td"></td>
                             <td th:text="${ct.name}" class="custom-td"></td>
                             <td>
-                                <a class="btn btn-primary btn-sm" th:href="@{/views/categories/details/}+${ct.id}" th:text="'Editar'"
+                                <a class="btn btn-warning btn-sm" th:href="@{/views/categories/edit/}+${ct.id}" th:text="'Editar'"
                                     title="'Editar Registro'"></a>
                                 <a class="btn btn-danger btn-sm" th:href="@{/views/categories/delete/}+${ct.id}" th:text="'Borrar'"
                                     title="'Borrar Registro'" onclick="return confirm('Seguro de eliminar registro ?');"></a>

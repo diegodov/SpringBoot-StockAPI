@@ -30,7 +30,7 @@ public class ProviderController {
 
     @GetMapping("/")
     public String showAll(Model model) {
-        List<Provider> providerList = ProviderService.showAll();
+        List<Provider> providerList = ProviderService.findAll();
         model.addAttribute("title", "Lista de Proveedores");
         model.addAttribute("providerList", providerList);
         return "ProviderViews/Provider";

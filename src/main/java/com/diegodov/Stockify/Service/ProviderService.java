@@ -29,7 +29,7 @@ public class ProviderService {
     }
 
     //show all providers
-    public List<Provider> showAll() {
+    public List<Provider> findAll() {
         return providerRepository.findAll();
     }
 

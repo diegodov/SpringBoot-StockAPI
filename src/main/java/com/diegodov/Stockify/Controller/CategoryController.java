@@ -1,6 +1,5 @@
 package com.diegodov.Stockify.Controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,20 +21,17 @@ import jakarta.validation.Valid;
 public class CategoryController {
     
     @Autowired
-    private final CategoryService categoryService;
+    private CategoryService categoryService;
 
-    CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
+    // Muestra todos los registros
     @GetMapping("/")
-    public String showAll(Model model) {
-        List<Category> categoryList = categoryService.showAll();
-        model.addAttribute("title", "Category list");
-        model.addAttribute("categoryList", categoryList);
+    public String findAll(Model model) {
+        model.addAttribute("title", "Lista de Categorias");
+        model.addAttribute("categories", categoryService.findAll());
         return "CategoryViews/Category";
     }
 
+    // Agrega un registro nuevo
     @GetMapping("/add")
     public String add(Model model) {
         Category category = new Category();
@@ -44,21 +40,23 @@ public class CategoryController {
         return "CategoryViews/CategoryForm";
     }
 
+    // Guarda el registro nuevo
     @PostMapping("/save")
     public String save(@ModelAttribute Category category){
         categoryService.save(category);
         return "redirect:/views/categories/";
     }
 
-    @GetMapping("/details/{id}")
-    public String details(@PathVariable("id") Long id, Model model) {
-        Category category = categoryService.showDetails(id);
+    // Edita un registro enviando el id a la vista de edicion
+    @GetMapping("/edit/{id}")
+    public String findById(@PathVariable("id") Long id, Model model) {
         model.addAttribute("title", "Editar categoria");
         model.addAttribute("id", id);
-        model.addAttribute("category", category);
+        model.addAttribute("category", categoryService.findById(id));
         return "CategoryViews/UpdateCategory";
     }
 
+    // Elimina un registro
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         categoryService.delete(id);
@@ -66,7 +64,8 @@ public class CategoryController {
         return "redirect:/views/categories/";
     }
 
-    @PostMapping("/edit/{id}")
+    // Actualiza un registro existente y lo guarda en la base de datos
+    @PostMapping("/update/{id}")
     public String update(@PathVariable("id") long id, @Valid Category category, BindingResult result, Model model) {
         if (result.hasErrors()) {
             category.setId(id);

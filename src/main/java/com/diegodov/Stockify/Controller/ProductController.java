@@ -47,8 +47,8 @@ public class ProductController {
 
     @GetMapping("/add")
     public String add(Model model) {
-        List<Provider> providers = providerService.showAll();
-        List<Category> categories = categoryService.showAll();
+        List<Provider> providers = providerService.findAll();
+        List<Category> categories = categoryService.findAll();
         Product Product = new Product();
         model.addAttribute("title", "Nuevo Producto");
         model.addAttribute("Product", Product);
@@ -65,8 +65,8 @@ public class ProductController {
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") Long id, Model model) {
-        List<Provider> providers = providerService.showAll();
-        List<Category> categories = categoryService.showAll();
+        List<Provider> providers = providerService.findAll();
+        List<Category> categories = categoryService.findAll();
         Product Product = productService.findById(id);
         model.addAttribute("title", "Editar Producto");
         model.addAttribute("id", id);

@@ -29,12 +29,12 @@ public class CategoryService {
     }
 
     //show all categories
-    public List<Category> showAll(){
+    public List<Category> findAll(){
         return categoryRepository.findAll();
     }
 
     //show details by id
-    public Category showDetails(Long id){
+    public Category findById(Long id){
         return categoryRepository.findById(id).orElse(null);
     }
 
